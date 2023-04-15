@@ -52,7 +52,7 @@ async function mainEvent() {
   const parsedData = JSON.parse(storedData);
 
 
-  if (parsedData.length > 0) {
+  if (parsedData !== null && parsedData.length > 0) {
     generateListButton.classList.remove("hidden");
   }
 
@@ -83,20 +83,23 @@ async function mainEvent() {
 
     // This changes the response from the GET into data we can use - an "object"
     const storedList = await results.json();
+    if (storedList.length > 0) {
+      generateListButton.classList.remove("hidden");
+    }
+    // console.log(storedList);
     localStorage.setItem('storedData', JSON.stringify(storedList));
 
     
 
     loadAnimation.style.display = "none";
     // console.table(storedList);
-    //injectHTML(currentList) // this is called "dot notation"
+    injectHTML(storedList); // this is called "dot notation"
     // arrayFromJson.data - we're accessing a key called 'data' on the returned object
     // it initially contains all 1,000 records from your request
   });
 
   generateListButton.addEventListener("click", (event) => {
     console.log("generate new list");
-    
     currentList = curRestaurantList(storedList);
     console.log(currentList);
     injectHTML(currentList);
