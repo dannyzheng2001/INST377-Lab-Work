@@ -123,6 +123,12 @@
       margin: 0 auto;
     }
   
+  #map {
+    width: 400px;
+    height: 380;
+    margin-bottom: 1rem;
+  }
+
   .box {
     background-color: rgba(238, 0, 255, 0.4);
     border: 2px dashed;
